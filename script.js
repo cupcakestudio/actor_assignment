@@ -17,9 +17,9 @@ var dataresult = await fetch(urlData);
 actors = await dataresult.json();
 console.log(actors);
 showActorList();
-filterButtons();
-}
 
+}
+let filter ="actors";
 // filters function
 function filterButtons() {
   filter = this.dataset.category; //find correct data value and set to this.
@@ -46,7 +46,28 @@ function filterButtons() {
 function showActorList(){
 const sectionActor = document.querySelector("#actorListView");
 const temp = document.querySelector("template");
+ sectionActor.textContent = "";
 actors.forEach(actor => {
+  if (filter == "movies") {
+    console.log(filter);
+    const actorCloneList = temp.cloneNode(true).content;
+  //add name of actor to clone Node
+  actorCloneList.querySelector("li").textContent = actor.movie
+  //add click functionality by anonymous func
+  actorCloneList.querySelector("li").addEventListener("click", () => { 
+  //popop window
+  const popwindow = document.querySelector("#popop");//from babushka exercise in 2.sem
+  document.getElementById("popop").style.display = "block";
+  popwindow.querySelector(".name").textContent = actor.fullname;
+  popwindow.querySelector(".movie").textContent = actor.movie;
+  popwindow.querySelector("#luk").addEventListener("click", () => popwindow.style.display = "none")
+  //add the actor to the list section
+  
+});
+sectionActor.appendChild(actorCloneList);
+  }
+  else {
+    console.log(filter)
   const actorCloneList = temp.cloneNode(true).content;
   //add name of actor to clone Node
   actorCloneList.querySelector("li").textContent = actor.fullname
@@ -62,4 +83,4 @@ actors.forEach(actor => {
   
 });
 sectionActor.appendChild(actorCloneList);
-})}
+}})}
