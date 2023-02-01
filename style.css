@@ -1,0 +1,26 @@
+li, #luk {
+  cursor: pointer;
+}
+
+/* popop overlay window must be hidden by default */
+#popop {
+  display: none;
+  position: fixed;
+  width: 50vw;
+  height: 50vh;
+  top: 0vh;
+  left: 50vh;
+  background-color: red;
+}
+
+.filterButton {
+display: flex;
+flex-direction: row;
+padding-left: 5vw;
+}
+.filterButton button {
+  margin: 2vw;
+}
+.chosen {
+  background-color: blue;
+}
